@@ -8,7 +8,7 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "cloudflare-worker-template-test"
-database_id = "f2aae4f2-b6c6-434c-88a1-fe7667958bb7"
+database_id = "1b15e57a-7d3b-4d6f-a7a4-945a5b27d54e"
 migrations_dir = "migrations"
 
 # R2 bucket binding
