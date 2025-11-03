@@ -57,6 +57,7 @@ declare global {
       // NextAuth configuration
       NEXTAUTH_SECRET?: string;
       NEXTAUTH_URL?: string;
+      AUTH_TRUST_HOST?: string;
 
       // OAuth providers
       GOOGLE_CLIENT_ID?: string;

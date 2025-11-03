@@ -10,9 +10,11 @@ import Google from 'next-auth/providers/google';
 import { verifyPassword } from '@/lib/auth/password';
 import { prisma } from '@/lib/db/client';
 import { PrismaAdapter } from '@/lib/auth/adapter';
+import { env } from '@/lib/config/env';
 
 export const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
+  trustHost: env.AUTH_TRUST_HOST,
 
   // Session strategy: Use JWT (suitable for Edge Runtime)
   session: {

@@ -12,6 +12,10 @@ const envSchema = z
     // NextAuth configuration
     NEXTAUTH_SECRET: z.string().min(1, 'NEXTAUTH_SECRET is required').default('dev-secret'),
     NEXTAUTH_URL: z.string().url().optional(),
+    AUTH_TRUST_HOST: z
+      .enum(['true', 'false'])
+      .default('false')
+      .transform(val => val === 'true'),
 
     // OAuth provider configuration
     GOOGLE_CLIENT_ID: z.string().min(1, 'GOOGLE_CLIENT_ID must be a non-empty string').optional(),
@@ -100,6 +104,13 @@ export type FullEnv = z.infer<typeof fullEnvSchema>;
 function validateEnv(): Env {
   try {
     const parsed = envSchema.parse(process.env);
+    if (
+      parsed.AUTH_TRUST_HOST === false &&
+      !process.env.AUTH_TRUST_HOST &&
+      (process.env.CF_PAGES || process.env.VERCEL)
+    ) {
+      parsed.AUTH_TRUST_HOST = true;
+    }
     const isCI = process.env.CI === 'true';
     const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build';
 

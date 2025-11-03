@@ -55,3 +55,5 @@ SLOW_QUERY_THRESHOLD_MS = "1000"
 
 # Authentication configuration
 NEXTAUTH_SECRET = "dev-secret"
+NEXTAUTH_URL = "https://localhost:8788"
+AUTH_TRUST_HOST = "true"
